@@ -21,13 +21,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
+        android:id="@+id/menu_sort"
+        android:icon="@drawable/ic_sort_again"
+        android:orderInCategory="0"
+        android:showAsAction="always"
+        android:title="sort again"
+        android:visible="true" />
+    <item
         android:id="@+id/menu_unfavourite"
         android:icon="@drawable/ic_favourite"
         android:orderInCategory="2"
         android:showAsAction="ifRoom"
         android:title="@string/remove_favourite"
         android:visible="false"/>
-    
+
     <item
         android:id="@+id/menu_favourite"
         android:icon="@drawable/ic_favourite_not"
@@ -35,23 +42,23 @@
         android:showAsAction="ifRoom"
         android:title="@string/add_favourite"
         android:visible="false"/>
-    
+
     <item
         android:id="@+id/menu_navigate_up"
         android:icon="@drawable/ic_navigate_up"
-        android:orderInCategory="0"
+        android:orderInCategory="1"
         android:showAsAction="always"
         android:title="@string/up"
         android:visible="true"/>
-    
+
     <item
         android:id="@+id/menu_refresh"
         android:icon="@drawable/ic_refresh"
-        android:orderInCategory="1"
-        android:showAsAction="ifRoom"
+        android:orderInCategory="2"
+        android:showAsAction="always"
         android:title="@string/refresh"
         android:visible="true"/>
-    
+
     <item
         android:id="@+id/menu_paste"
         android:icon="@drawable/ic_paste"
@@ -66,7 +73,7 @@
         android:showAsAction="ifRoom"
         android:title="@string/select_all"
         android:visible="true"/>
-    
+
     <item
         android:id="@+id/menu_create_folder"
         android:icon="@drawable/ic_create_folder"
@@ -74,5 +81,4 @@
         android:showAsAction="ifRoom"
         android:title="@string/create_folder"
         android:visible="true"/>
-
 </menu>
