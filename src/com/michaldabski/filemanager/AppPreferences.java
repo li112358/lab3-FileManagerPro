@@ -42,7 +42,8 @@ public class AppPreferences
 	public static final int
 		SORT_BY_NAME = 0,
 		SORT_BY_TYPE = 1,
-		SORT_BY_SIZE = 2;
+		SORT_BY_SIZE = 2,
+		SORT_BY_SIZE_ALL = 3;
 	
 	public static final int
 		CARD_LAYOUT_MEDIA = 0,
@@ -119,7 +120,7 @@ public class AppPreferences
 	
 	public AppPreferences setSortBy(int sortBy)
 	{
-		if (sortBy < 0 || sortBy > 2)
+		if (sortBy < 0 || sortBy > 3)
 			throw new InvalidParameterException(String.valueOf(sortBy)+" is not a valid id of sorting order");
 		
 		this.sortBy = sortBy;
@@ -147,7 +148,9 @@ public class AppPreferences
 				
 			case SORT_BY_TYPE:
 				return new FileUtils.FileExtensionComparator();
-				
+
+			case SORT_BY_SIZE_ALL:
+				return new FileSizeComparator();
 			default:
 				return new FileUtils.FileNameComparator();
 		}
@@ -158,5 +161,26 @@ public class AppPreferences
 		AppPreferences instance = new AppPreferences();
 		instance.loadFromSharedPreferences(context.getSharedPreferences(NAME, Context.MODE_PRIVATE));
 		return instance;
+	}
+}
+
+class FileSizeComparator extends FileUtils.FileNameComparator
+{
+	private final boolean ascending = false;
+
+	@Override
+	public int compare(File lhs, File rhs)
+	{
+		long lsize, rsize;
+		if (lhs.isDirectory())lsize = FileUtils.getFileSize(lhs);
+		else lsize = lhs.length();
+		if (rhs.isDirectory())rsize = FileUtils.getFileSize(rhs);
+		else rsize = lhs.length();
+
+		if (lsize > rsize)
+			return ascending ? SECOND : FIRST;
+		else if (lsize < rsize)
+			return ascending ? FIRST : SECOND;
+		else return super.compare(lhs, rhs);
 	}
 }

@@ -39,6 +39,7 @@
         android:showAsAction="always"
         android:title="@string/refresh"
         android:visible="true"/>
+
     <item
         android:id="@+id/menu_paste"
         android:icon="@drawable/ic_paste"
