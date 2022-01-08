@@ -65,6 +65,7 @@ public class AboutActivity extends Activity implements OnClickListener
 		
 		findViewById(R.id.btnFeedback).setOnClickListener(this);
 		findViewById(R.id.btnPlaystore).setOnClickListener(this);
+		findViewById(R.id.btnBack).setOnClickListener(this);
 	}
 	
 	/**
@@ -127,7 +128,15 @@ public class AboutActivity extends Activity implements OnClickListener
 					e.printStackTrace();
 				}
 				break;
-			
+
+			case R.id.btnBack:
+				try{
+                    NavUtils.navigateUpFromSameTask(this);
+				}catch (Exception e)
+                {
+					e.printStackTrace();
+				}
+				break;
 		}
 	}
 	
